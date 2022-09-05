@@ -2,4 +2,5 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Builds/VisualStudio2019/.vs/Attic/v16/Browse.VC.opendb
+Builds
+JuceLibraryCode

@@ -7,7 +7,7 @@
 */
 
 #pragma once
-
+// A fatal error prevented further changes to be made via commit and push
 #include <JuceHeader.h>
 
 //==============================================================================

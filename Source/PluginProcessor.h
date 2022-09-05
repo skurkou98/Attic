@@ -7,16 +7,15 @@
 */
 
 #pragma once
-// A fatal error prevented further changes to be made via commit and push
 #include <JuceHeader.h>
 
+// A fatal error prevented further changes to be made via commit and push, error seemed to relate to build folder not being ignored
 //==============================================================================
 /**
 */
-class AtticAudioProcessor  : public juce::AudioProcessor
-                            #if JucePlugin_Enable_ARA
-                             , public juce::AudioProcessorARAExtension
-                            #endif
+class AtticAudioProcessor  : public juce::AudioProcessor,
+                             public juce::AudioProcessorValueTreeState::Listener
+                            
 {
 public:
     //==============================================================================
@@ -56,7 +55,10 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    void parameterChanged(const juce::String& parameterID, float newValue) override;
+
 private:
+    juce::AudioProcessorValueTreeState treeState;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AtticAudioProcessor)
 };

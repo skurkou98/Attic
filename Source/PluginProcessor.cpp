@@ -19,9 +19,21 @@ AtticAudioProcessor::AtticAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), treeState(*this, nullptr, juce::Identifier("PARAMETERS"),
+                           { std::make_unique<juce::AudioParameterFloat>("cutoff", "Cutoff", 20.0f, 20000.0f, 20000.0f),
+                           std::make_unique<juce::AudioParameterFloat>("resonance", "Resonance", 0.0f, 1.10f, 0.15f),
+                           std::make_unique<juce::AudioParameterFloat>("drive", "Drive", 1.0f, 25.0f, 1.0f),
+                           std::make_unique<juce::AudioParameterChoice>("mode", "Filter Type",
+                           juce::StringArray("LPF12", "LPF24", "HPF12", "HPF24", "BPF12", "BPF24"), 0) })
 #endif
 {
+    const juce::StringArray params = { "cutoff", "resonance", "drive", "mode" };
+    for (int i = 0; i <= 3; ++i)
+    {
+        // Adds a listener to each parameter in the array.
+        treeState.addParameterListener(params[i], this);
+    }
+
 }
 
 AtticAudioProcessor::~AtticAudioProcessor()
@@ -166,7 +178,7 @@ bool AtticAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* AtticAudioProcessor::createEditor()
 {
-    return new AtticAudioProcessorEditor (*this);
+    return new AtticAudioProcessorEditor (*this, treeState);
 }
 
 //==============================================================================
@@ -188,4 +200,9 @@ void AtticAudioProcessor::setStateInformation (const void* data, int sizeInBytes
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new AtticAudioProcessor();
+}
+
+void AtticAudioProcessor::parameterChanged(const juce::String& parameterID, float newValue)
+{
+
 }

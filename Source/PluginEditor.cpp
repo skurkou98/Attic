@@ -10,8 +10,9 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-AtticAudioProcessorEditor::AtticAudioProcessorEditor (AtticAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p)
+AtticAudioProcessorEditor::AtticAudioProcessorEditor (AtticAudioProcessor& p, juce::AudioProcessorValueTreeState& vts)
+    : AudioProcessorEditor (&p), audioProcessor (p), treeState(vts)
+
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.

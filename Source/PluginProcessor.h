@@ -9,7 +9,6 @@
 #pragma once
 #include <JuceHeader.h>
 
-// A fatal error prevented further changes to be made via commit and push, error seemed to relate to build folder not being ignored
 //==============================================================================
 /**
 */
@@ -55,7 +54,7 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    void parameterChanged(const juce::String& parameterID, float newValue) override;
+    void parameterChanged(const juce::String& parameterID, float newValue) override; // Relates to function at end of processor.cpp file..
 
 private:
     juce::AudioProcessorValueTreeState treeState;

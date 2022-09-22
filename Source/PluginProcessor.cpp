@@ -19,6 +19,7 @@ AtticAudioProcessor::AtticAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
+                       // Parameters will be added using Value Tree State via std::make_unique..
                        ), treeState(*this, nullptr, juce::Identifier("PARAMETERS"),
                            { std::make_unique<juce::AudioParameterFloat>("cutoff", "Cutoff", 20.0f, 20000.0f, 20000.0f),
                            std::make_unique<juce::AudioParameterFloat>("resonance", "Resonance", 0.0f, 1.10f, 0.15f),
@@ -27,10 +28,10 @@ AtticAudioProcessor::AtticAudioProcessor()
                            juce::StringArray("LPF12", "LPF24", "HPF12", "HPF24", "BPF12", "BPF24"), 0) })
 #endif
 {
-    const juce::StringArray params = { "cutoff", "resonance", "drive", "mode" };
+    const juce::StringArray params = { "cutoff", "resonance", "drive", "mode" }; // Adds each parameter into a string array called 'params'..
     for (int i = 0; i <= 3; ++i)
     {
-        // Adds a listener to each parameter in the array.
+        // Adds a listener to each parameter in the array..
         treeState.addParameterListener(params[i], this);
     }
 
@@ -80,8 +81,7 @@ double AtticAudioProcessor::getTailLengthSeconds() const
 
 int AtticAudioProcessor::getNumPrograms()
 {
-    return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
-                // so this should be at least 1, even if you're not really implementing programs.
+    return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs.
 }
 
 int AtticAudioProcessor::getCurrentProgram()
@@ -105,14 +105,12 @@ void AtticAudioProcessor::changeProgramName (int index, const juce::String& newN
 //==============================================================================
 void AtticAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
+    // Use this method as the place to do any pre-playback initialisation that you need..
 }
 
 void AtticAudioProcessor::releaseResources()
 {
-    // When playback stops, you can use this as an opportunity to free up any
-    // spare memory, etc.
+    // When playback stops, you can use this as an opportunity to free up any spare memory, etc.
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -202,6 +200,7 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
     return new AtticAudioProcessor();
 }
 
+// This function is called when a parameter is changed..
 void AtticAudioProcessor::parameterChanged(const juce::String& parameterID, float newValue)
 {
 

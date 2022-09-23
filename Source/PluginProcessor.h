@@ -58,6 +58,7 @@ public:
 
 private:
     juce::AudioProcessorValueTreeState treeState;
+    juce::dsp::LadderFilter<float> ladderFilter;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AtticAudioProcessor)
 };

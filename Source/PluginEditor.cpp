@@ -14,7 +14,7 @@ AtticAudioProcessorEditor::AtticAudioProcessorEditor (AtticAudioProcessor& p, ju
     : AudioProcessorEditor (&p), audioProcessor (p), treeState(vts)
 {
     // Make sure that before the constructor has finished, you've set the editor's size to whatever you need it to be..
-    setSize (340, 300);
+    setSize (340, 280);
 
     // Cut-off Frequency
     cutoffValue = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>
@@ -69,7 +69,7 @@ void AtticAudioProcessorEditor::paint (juce::Graphics& g)
     g.drawFittedText("a ladder filter", 65, 60, 210, 10, juce::Justification::centred, 1, 0.0f);
     // Controls labels
     g.setFont(20);
-    g.drawFittedText("F", 55, 145, 10, 10, juce::Justification::centred, 1, 0.0f);
+    g.drawFittedText("C", 55, 145, 10, 10, juce::Justification::centred, 1, 0.0f);
     g.drawFittedText("R", 165, 145, 10, 10, juce::Justification::centred, 1, 0.0f);
     g.drawFittedText("D", 275, 145, 10, 10, juce::Justification::centred, 1, 0.0f);
 }

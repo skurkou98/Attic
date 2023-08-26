@@ -1,6 +1,6 @@
 "Attic" plugin by Stanislau Kurkou (2022)
 
-This plugin was built in Visual Studio (2019) using JUCE library code. "Attic" is a non-linear ladder filter processor, the logic of which is loosely based on early model MOOG ladder filter synths. It facilitates the use of the Value Tree State (vts) class from JUCE library code and comes with the following user-defined controls:
+This plugin was built in Visual Studio (2019) using JUCE library code. "Attic" is a non-linear ladder filter processor, the logic of which is loosely based on early model filters on MOOG synths. It facilitates the use of the Value Tree State (vts) class from JUCE library code and comes with the following user-defined controls:
 -'C' for Cutoff.
 -'R' for Resonance.
 -'D' for Drive.

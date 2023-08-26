@@ -205,7 +205,7 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 // This function is called when a parameter is changed..
 void AtticAudioProcessor::parameterChanged(const juce::String& parameterID, float newValue)
 {
-    if (parameterID == "cutOff")
+    if (parameterID == "cutoff")
         ladderFilter.setCutoffFrequencyHz(newValue);
 
     else if (parameterID == "resonance")
